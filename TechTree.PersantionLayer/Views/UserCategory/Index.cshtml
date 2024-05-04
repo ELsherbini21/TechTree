@@ -1,0 +1,147 @@
+﻿@model IEnumerable<UserCategoryViewModel>
+
+
+@{
+    ViewData["Title"] = "User Category Index";
+}
+
+@inject UserManager<ApplicationUser> _userManager
+<style>
+
+
+    .container {
+        padding: 50px 70px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .listItem {
+        padding: 8px;
+        padding-left: 40px;
+        transition: ease 400ms;
+        cursor: pointer;
+        display: flex;
+        letter-spacing: 1px;
+        opacity: 0.85;
+    }
+
+        .listItem:hover {
+            transform: translateX(20px);
+            opacity: 1;
+        }
+
+        .listItem:focus-visible {
+            outline: 2px solid red;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+    .my-list {
+        list-style: none;
+        counter-reset: none;
+    }
+
+    .listItem:before {
+        counter-increment: ordered-list;
+        content: counter(ordered-list);
+        font-family: "Sharpie", sans-serif;
+        margin-right: 10px;
+        background-color: #ff4e4e;
+        color: #f6f6f6;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+    }
+
+    .table > tbody > tr > td {
+        vertical-align: central;
+    }
+
+    .thumbnail-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+
+    .action-btns a {
+        margin-right: 5px;
+    }
+
+    .action-btns .btn {
+        padding: 0.375rem 0.75rem;
+    }
+
+
+    .full-width-container {
+        width: 90vw;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 1px;
+        margin-left: -50px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<div class="Listcontainer">
+
+    <partial name="PartialViews/_CategoriesSelectList" model="new UserCategoryViewModel()" />
+
+
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>Full Name </th>
+                <th>Email</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var ii in Model)
+            {
+
+
+                <tr class="my-list">
+
+                    <td>
+                        @ii.ApplicationUser.FirstName @ii.ApplicationUser.LastName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(itemMode=>  @ii.ApplicationUser.Email)
+                    </td>
+                    <td>
+                        @ii.Category.Title
+                    </td>
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+
+
+</div>
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<CategoryViewModel>
+
+@{
+    const int itemsPerRow = 3;
+
+    var count = Model.Count() / itemsPerRow;
+
+    var catList = new List<CategoryViewModel>();
+
+    var emailForm = new EmailViewModel();
+}
+
+<!-- hero Section -->
+<div class="hero section">
+    <img class="img-fluid" src="~/files/Images/HeroImage.jpeg" />
+    <div class="hero-heading">
+        <h2 class="hero-heading-text">Learn Software Engineering at <strong> TechTree </strong></h2>
+        <a asp-controller="Account" asp-action="SignUp" id="HeroRegisterButton" class="btn btn-outline-info btn-lg text-light hero-register-button">
+            Register
+        </a>
+    </div>
+</div>
+
+
+<hr class="Section-divider" />
+
+
+<!-- Courses Section -->
+<div class="courses section" id="courses">
+    <h3 class="section-header"> Courses </h3>
+
+    @for (int i = 0; i <= count; i++)
+    {
+        catList = Model.Skip(i * itemsPerRow).Take(itemsPerRow).ToList();
+
+        <partial name="PartialViews/_DisplayCardRowPartial" model="catList" />
+    }
+</div>
+
+
+<hr class="Section-divider" />
+
+
+<!--Contact Us Section-->
+<div id="contactUs" class="contact-us section">
+    <h3 class="col-md-5 section-header"><i class="fas fa-phone-alt mr-2 text-info"></i>Contact Us</h3>
+    <div class="col-md-5">
+        Email us any questions or inquiries or call 518-387-9999. We would be happy to answer your questions and set up a meeting with you.
+    </div>
+    <div class="mt-3">
+        <div class="col-md-8">
+            <partial name="PartialViews/EmailFormPartial" model="@emailForm" />
+
+            <form asp-action="SendEmail" method="post">
+
+                <div class="form-group">
+                    <label for="To" class="control-label">Email: </label>
+                    <input id="To" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label for="Subject" class="control-label">Subject: </label>
+                    <input id="Subject" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <label for="Body" class="control-label">Message: </label>
+                    <textarea id="Body" cols="30" rows="10" class="form-control"></textarea>
+
+                </div>
+                <div class="form-group d-flex">
+                    <input type="submit" value="Send Email" class="btn btn-outline-info ms-auto mt-1" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<hr class="section-divider" />
+
+
+<!--About Us Section-->
+<div id="aboutUs" class="about-us section">
+    <h3 class="col-md-5 section-header"><i class="fas fa-chalkboard-teacher mr-2 text-info"></i>About Us</h3>
+    <div class="mt-3 mb-5">
+        <div class="col-md-5">
+            <p>
+                <strong>TechTree</strong> provides articles and courses on programming topics. We started in 1998 and continue to provide high quality Tech content to our members.
+            </p>
+        </div>
+    </div>
+</div>

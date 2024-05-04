@@ -1,0 +1,60 @@
+﻿@model ApplicationUserViewModel
+
+<form asp-action="Edit" asp-route-Id="@Model.Id" method="post">
+
+    <div class="container">
+        <div class="main-body">
+
+            <div class="col-md-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+
+
+                        <div class="row">
+                            <label asp-for="FirstName" class="col-sm-3"></label>
+                            <input asp-for="FirstName" class="col-sm-9 text-secondary" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <label asp-for="LastName" class="col-sm-3"></label>
+                            <input asp-for="LastName" class="col-sm-9 text-secondary" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <label asp-for="UserName" class="col-sm-3"></label>
+                            <input asp-for="UserName" class="col-sm-9 text-secondary" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+
+
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <label asp-for="Email" class="col-sm-3"></label>
+                            <input asp-for="Email" class="col-sm-9 text-secondary" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <a asp-controller="Home" asp-action="Index" class="btn btn-info bt-lg   w-75 m-auto"> Return To Home Page </a>
+                            </div>
+
+                            <div class="col-sm-5">
+                                <input type="submit" class="btn btn-success  bt-lg  w-50 m-auto" value="Update Data" />
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

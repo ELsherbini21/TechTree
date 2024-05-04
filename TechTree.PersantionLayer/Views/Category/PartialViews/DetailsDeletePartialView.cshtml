@@ -1,0 +1,26 @@
+﻿@model CategoryViewModel
+
+
+
+
+
+     <dl class="row details-description">
+    
+
+    
+
+        <hr style="visibility:hidden;" />
+        <dt class="col-5">@Html.DisplayNameFor(model => model.Title)</dt>
+        <dd class="col-6">@Html.DisplayFor(model => model.Title)</dd>
+
+        <hr style="visibility:hidden;" />
+        <dt class="col-5">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-6">@Html.DisplayFor(model => model.Description)</dd>
+
+
+        <dd class="col-sm-10 details-thumbnail">
+            <img src="~/files/Images/@Model.thumbnailImagePath" class="img img-thumbnail" />
+            <br />
+            @Html.DisplayFor(model => model.thumbnailImagePath)
+        </dd>
+    </dl>

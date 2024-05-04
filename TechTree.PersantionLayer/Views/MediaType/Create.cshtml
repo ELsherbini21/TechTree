@@ -1,0 +1,65 @@
+﻿@model MediaTypeViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<style>
+    /* Custom CSS for Create View */
+    .create-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .create-title {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-container {
+        margin-top: 20px;
+    }
+</style>
+
+<h1 class="create-title">Create</h1>
+
+<div class="create-container">
+    <h4> </h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" method="post" class="needs-validation" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <partial name="PartialViews/CreateEditPartial" model="Model" />
+
+
+
+
+                <div class="form-group btn-container">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="btn-container">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    
+    <partial name="_ValidationScriptsPartial" />
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

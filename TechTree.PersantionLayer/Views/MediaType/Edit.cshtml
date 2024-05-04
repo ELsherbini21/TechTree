@@ -1,0 +1,63 @@
+﻿@model MediaTypeViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+    /* Custom CSS for Edit View */
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .btn-secondary {
+        margin-top: 15px;
+    }
+</style>
+
+<h1>Edit </h1>
+
+<h4> @Model.Title</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+
+
+
+            <partial name="PartialViews/CreateEditPartial" model="Model" />
+
+            <div class="row">
+
+                <img src="~/files/Images/@ViewBag.ImgPath" class="img img-thumbnail w-100 h-100" />
+
+            </div>
+
+            <input type="hidden" asp-for="thumbnailImagePath" value="@ViewData["ImgPath"]" />
+
+
+            <div class="form-group">
+                <input type="submit" value="Save Edit" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

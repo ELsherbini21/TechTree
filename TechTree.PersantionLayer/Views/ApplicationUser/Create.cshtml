@@ -1,0 +1,102 @@
+﻿@model CategoryItemViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@inject IUnitOfWork UnitOfWork
+
+@{
+    SelectList selectListMediaType;
+    var MediaTypeList = await UnitOfWork.MediaTypeRepository.GetAllAsync();
+    if (Model is null)
+    {
+        selectListMediaType = new SelectList(MediaTypeList, "Id", "Title");
+    }
+    else
+    {
+        selectListMediaType = new SelectList(MediaTypeList, "Id", "Title", @Model.MediaTypeId);
+
+    }
+}
+<style>
+    /* Custom CSS for Create View */
+    .create-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .create-title {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-container {
+        margin-top: 20px;
+    }
+</style>
+
+<h1 class="create-title">Create</h1>
+
+<div class="create-container">
+    <h4> </h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" asp-route-CategoryId=" @Model.CategoryId" method="post" class="needs-validation" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">Title:</label>
+                    <input asp-for="Title" class="form-control" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Description:</label>
+                    <input asp-for="Description" class="form-control" required />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="MediaTypeId" class="form-label"></label>
+                    <select asp-for="MediaTypeId" asp-items="selectListMediaType" class="form-select ">
+                        <option value="@null"> -- select Media -- </option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label asp-for="DateTimeItemReleased" class="form-label"></label>
+                    <input asp-for="DateTimeItemReleased" class="form-control datepicker " />
+                </div>
+
+                <div class="form-group btn-container">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="btn-container">
+    <a asp-action="Index" asp-route-Id="@Model.CategoryId" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('.datepicker').datepicker();
+        })
+    </script>
+
+    
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

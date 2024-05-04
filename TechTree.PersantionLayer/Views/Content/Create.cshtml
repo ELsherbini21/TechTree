@@ -1,0 +1,75 @@
+﻿@model ContentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    /* Custom CSS for Create View */
+    .create-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .create-title {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-container {
+        margin-top: 20px;
+    }
+</style>
+
+<h1 class="create-title">Add Content</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create" method="post" class="needs-validation" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="CategoryItemId" class="form-control" />
+            <input type="hidden" asp-for="CategoryId" class="form-control" /> 
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HtmlContent" class="control-label"></label>
+                <textarea asp-for="HtmlContent" rows="5" cols="20" class="form-control" required></textarea>
+                <span asp-validation-for="HtmlContent" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <label asp-for="VideoLink" class="form-label"></label>
+                <input asp-for="VideoLink" class="form-control" />
+            </div>
+
+
+            <div class="form-group btn-container">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="btn-container">
+    <a asp-controller="CategoryItem" asp-action="Index" asp-route-Id="@Model.CategoryId" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

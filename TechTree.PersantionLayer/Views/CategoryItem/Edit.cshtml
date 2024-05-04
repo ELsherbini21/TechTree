@@ -1,0 +1,67 @@
+﻿@model CategoryItemViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+    /* Custom CSS for Edit View */
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .btn-secondary {
+        margin-top: 15px;
+    }
+</style>
+
+<h1>Edit </h1>
+
+<h4> @Model.Title</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-id ="@Model.Id" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <input type="hidden" asp-for="CategoryId" class="form-control" />
+            <input type="hidden" asp-for="MediaTypeId" class="form-control" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Description</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateTimeItemReleased" class="control-label"></label>
+                <input asp-for="DateTimeItemReleased" class="form-control" />
+                <span asp-validation-for="DateTimeItemReleased" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save Edit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-Id="@Model.CategoryId" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

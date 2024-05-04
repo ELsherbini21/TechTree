@@ -1,0 +1,59 @@
+﻿@model CategoryViewModel
+
+@inject IUnitOfWork _unitOfWork
+@{
+    var numberOfUsers = _unitOfWork.UserCategoryRepository.GetAllAsync().Result.Count(userCateg => userCateg.CategoryId == Model.Id);
+}
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    /* Custom CSS for Details View */
+    .details-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .details-title {
+        margin-bottom: 20px;
+    }
+
+    .details-description {
+        margin-bottom: 20px;
+    }
+
+    .details-thumbnail {
+        margin-bottom: 20px;
+    }
+
+        .details-thumbnail img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .back-link {
+        margin-top: 20px;
+    }
+</style>
+
+<h1 class="details-title">Details</h1>
+
+<div class="details-container">
+    <h4>Category Details</h4>
+    <hr />
+
+    <dl class="row">
+    <dt class="col-5">Number of users That Registered </dt>
+    <dd class="col-6">@numberOfUsers</dd>
+        <partial name="PartialViews/DetailsDeletePartialView" />
+
+    </dl>
+</div>
+
+<div class="back-link">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

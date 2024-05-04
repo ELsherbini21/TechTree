@@ -1,0 +1,53 @@
+﻿@model UserCategoryViewModel
+@inject UserManager<ApplicationUser> _userManager
+@inject IUnitOfWork _unitOfWork
+
+@{
+    var usersSelectedList = new SelectList(_userManager.Users.ToList(), nameof(ApplicationUser.Id), nameof(ApplicationUser.UserName));
+
+    var CategoriesSelectedList = new SelectList(await _unitOfWork.CategoryRepository.GetAllAsync(), nameof(Category.Id), nameof(Category.Title));
+}
+
+<form asp-action="Create" method="post">
+    <div class="container">
+
+        <div class="row row-cols-2">
+
+            <div class="col">
+
+                <select asp-items="usersSelectedList" asp-for="ApplicationUserId" class="form-select ">
+                    <option value="@null" selected>-- Select User --</option>
+                </select>
+
+            </div>
+
+            <div class="col">
+
+                <select asp-items="CategoriesSelectedList" asp-for="CategoryId" class="form-select  ">
+                    <option value="@null" selected>-- Select Category --</option>
+                </select>
+
+            </div>
+
+
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-5 m-auto ">
+
+                <input type="submit" class="btn btn-primary w-100" value="Save" />
+
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@if (Model is not null)
+{
+    <h3 class="text-danger"> These 2 values That you are Select already Exist in The Table </h3>
+
+
+}
+
+

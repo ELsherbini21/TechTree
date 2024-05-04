@@ -1,0 +1,22 @@
+﻿<li class="nav-item dropdown show ">
+    <a class="nav-link dropdown-toggle text-black" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Admin
+    </a>
+    <ul class="dropdown-menu text-black" aria-labelledby="navbarDropdown">
+        <li>
+            <a class="dropdown-item" asp-controller="Category" asp-action="Index">Categories</a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+            <a class="dropdown-item" asp-controller="UserCategory" asp-action="Index">Users to Categories</a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+            <a class="dropdown-item" asp-controller="MediaType" asp-action="Index">Media Type</a>
+        </li>
+    </ul>
+</li>

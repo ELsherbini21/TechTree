@@ -1,0 +1,119 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ms-2 fixed-top">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/files/Images/TechTreeLogo.jpeg" class="img-thumbnail" alt="TechTreeLogo" style="max-height:40px;max-width:50px;">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1 text-black">
+
+                @if (!SignInManager.IsSignedIn(User))
+                {
+
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#courses">Courses</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#contactUs">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#aboutUs">About Us </a>
+                    </li>
+                }
+
+
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+
+                    <partial name="AdminMenuPartial" />
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="ApplicationUser" asp-action="Index">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Role" asp-action="Index">Roles</a>
+                    </li>
+
+
+
+                }
+
+
+
+            </ul>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+
+                <ul class="navbar-nav flex-grow-1 navbar-center text-black ">
+
+                    <form class="d-flex " method="post">
+
+                        <input id="searchText" class="form-control me-2 input-group-sm text-center" type="search" placeholder="Type To Search" />
+
+                    </form>
+                </ul>
+            }
+
+            <div id="loginSection">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+
+
+                        <ul class="nav navbar-nav navbar-right m-auto">
+
+                            <li>
+                                <a class="mx-4 " asp-controller="ApplicationUser" asp-action="Edit" asp-route-userId="@UserManager.GetUserId(User)" title="Manage">
+                                    <i class="fa-solid fa-user-large" title="@UserManager.GetUserName(User)"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="ms-2 me-5" asp-controller="Account" asp-action="SignOut" title="Manage">
+                                    <i class="fa-solid fa-right-from-bracket" title="Log Out"></i>
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+                    </form>
+                }
+                else
+                {
+
+                    <ul class="nav navbar-nav navbar-right ">
+
+
+
+                        <li class="me-4">
+                            <a class="btn btn-primary" asp-controller="Account" asp-action="SignIn">
+                                Login
+                            </a>
+                        </li>
+
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<script>
+
+</script>

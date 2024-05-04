@@ -1,0 +1,60 @@
+﻿@model CategoryItemViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    /* Custom CSS for Details View */
+    .details-container {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .details-title {
+        margin-bottom: 20px;
+    }
+
+    .details-description {
+        margin-bottom: 20px;
+    }
+
+    .details-thumbnail {
+        margin-bottom: 20px;
+    }
+
+        .details-thumbnail img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .back-link {
+        margin-top: 20px;
+    }
+</style>
+
+<h1 class="details-title">Details</h1>
+
+<div class="details-container">
+    <h4>Category Details</h4>
+    <hr />
+    <dl class="row details-description">
+       
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Title)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Title)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Description)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.DateTimeItemReleased)</dt>
+        <dd class="col-sm-10 details-thumbnail">@Html.DisplayFor(model => model.DateTimeItemReleased)</dd>
+    </dl>
+</div>
+
+<div class="back-link">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" asp-route-Id="@Model.CategoryId" class="btn btn-secondary">Back to List</a>
+</div>
