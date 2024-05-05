@@ -73,6 +73,8 @@ StyleCopReport.xml
 
 # Files built by Visual Studio
 *_i.c
+*_i.json
+*appsettings.json
 *_p.c
 *_h.h
 *.ilk
@@ -99,6 +101,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+
 
 # Chutzpah Test files
 _Chutzpah*
