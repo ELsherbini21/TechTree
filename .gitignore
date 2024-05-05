@@ -5,6 +5,7 @@
 
 #
 *.json 
+*.cs
 # User-specific files
 *.rsuser
 *.suo
@@ -73,8 +74,6 @@ StyleCopReport.xml
 
 # Files built by Visual Studio
 *_i.c
-*_i.json
-*appsettings.json
 *_p.c
 *_h.h
 *.ilk
