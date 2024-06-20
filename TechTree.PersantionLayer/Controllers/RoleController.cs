@@ -92,17 +92,7 @@ namespace TechTree.PersantionLayer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //public async Task<IActionResult> Delete(string roleId)
-        //{
-        //    var role = await _roleManager.FindByIdAsync(roleId);
-
-        //    if (role is not null)
-        //        await _roleManager.DeleteAsync(role);
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-
+     
         public async Task<IActionResult> SelectUsers(string roleId)
         {
             if (roleId is null)
